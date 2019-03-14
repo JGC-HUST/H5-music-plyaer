@@ -1,0 +1,108 @@
+/* reset */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+.wrapper {
+    height: 460px;
+    width: 270px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -230px;
+    margin-left: -135px;
+    overflow: hidden;
+    box-shadow: 0 0 5px 1px #999999;
+}
+.cover {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -5;
+}
+.cover img {
+    height: 100%;
+    width: 100%;
+    filter: blur(40px);
+}
+.page-header {
+    height: 40px;
+    display: flex;
+}
+.page-header .icon {
+    height: 40px;
+    width: 40px;
+}
+.icon img {
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+}
+.page-header .song-title {
+    width: 190px;
+    height: 100%;
+}
+.page-header .song-title .title {
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+    color: #ffffff;
+}
+.page-header .song-title .author {
+    height: 15px;
+    line-height: 15px;
+    font-size: 10px;
+    color: #dddddd
+}
+.page-img {
+    height: 290px;
+    position: relative;
+}
+.page-img .song-img {
+    width: 175px;
+    height: 175px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -87.5px;
+    margin-left: -87.5px;
+    border-radius: 50%;
+}
+.page-process {
+    height: 130px;
+}
+.page-process .more {
+    height: 40px;
+    display: flex;
+    justify-content: space-around
+}
+.page-process .bar {
+    height: 30px;
+} 
+.page-process .btns {
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.prev,
+.next,
+.play {
+    height: 40px;
+    width: 40px;
+}
+.prev img,
+.next img {
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+}
+.play img {
+    height: 40px;
+    width: 40px;
+}
+audio {
+    height: 100%;
+    width: 100%;
+}
