@@ -11,6 +11,7 @@ function player(id) {
     this.bgImg = this.el.querySelector('#bg-img');
     this.songImg = this.el.querySelector('#song-img');
     this.looped = false;
+    this.liked = false;
 }
 // 定义类的方法
 // 下一曲
@@ -40,7 +41,15 @@ player.prototype.toggleLoop = function () {
 }
 player.prototype.like = function () {
     // todo
-    alert('收藏成功')
+    let icon = this.el.querySelector('#like').childNodes[0];
+    if (this.liked) {
+        this.liked = false;
+        icon.src = 'static/heart.png'
+    } else {
+        icon.src = 'static/heart-fill.png';
+        this.liked = true;
+        alert('收藏成功');
+    }
 }
 // 初始化函数
 player.prototype.init = function () {
@@ -58,7 +67,6 @@ player.prototype.init = function () {
     this.btns.addEventListener('click', function (e) {
         let target = e.target;
         let id = target.id || target.parentNode.id;
-        log(id);
         switch (id) {
             case 'playTrack':
                 _this.audio.play();
@@ -79,9 +87,20 @@ player.prototype.init = function () {
                 _this.changeStatus();
                 break;
             case 'loop':
-            log(123)
                 _this.toggleLoop();
                 break;
+            default:
+                break;
+        }
+    });
+    this.more.addEventListener('click', function (e) {
+        let target = e.target;
+        let id = target.id || target.parentNode.id;
+        switch (id) {
+            case 'like':
+                _this.like();
+                break;
+        
             default:
                 break;
         }
@@ -102,11 +121,11 @@ player.prototype.renderInfo = function () {
     this.el.querySelector('.author').innerText = author;
     // 更新图片
     this.songImg.src = data[this.playIndex].img;
+    this.el.querySelector('#bg-img').src = data[this.playIndex].img;
 }
 // 切换播放和暂停的状态
 player.prototype.changeStatus = function () {
     let playBtn = this.el.querySelector('.play');
-    log(playBtn);
     if (this.audio.paused) {
         playBtn.id = 'playTrack';
         playBtn.childNodes[0].src = 'static/play-circle.png';
