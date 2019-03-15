@@ -12,6 +12,8 @@ function player(id) {
     this.songImg = this.el.querySelector('#song-img');
     this.looped = false;
     this.liked = false;
+    this.interval = null;
+    this.deg = 0;
 }
 // 定义类的方法
 // 下一曲
@@ -51,9 +53,21 @@ player.prototype.like = function () {
         alert('收藏成功');
     }
 }
+player.prototype.toggleRotate = function () {
+    let img = this.el.querySelector('#song-img');
+    let _this = this;
+    if (!this.audio.paused) {
+        _this.interval = setInterval(function () {
+            _this.deg = _this.deg + 0.36;
+            img.style.transform = 'rotate(' + _this.deg + 'deg)';
+        }, 10);
+    } else {
+        clearInterval(this.interval);
+    }
+}
 // 初始化函数
 player.prototype.init = function () {
-    let _this = this;
+    let _this = this;100
     this.playList = data;
     this.playIndex = 0;
     this.audio.src = data[this.playIndex].src;
@@ -62,6 +76,9 @@ player.prototype.init = function () {
         _this.playIndex = (_this.playIndex + 1) % _this.playList.length;
         _this.audio.src = data[_this.playIndex].src;
         _this.renderInfo();
+        _this.audio.play();
+        _this.changeStatus();
+        _this.toggleRotate();
     };
     this.renderInfo();
     this.btns.addEventListener('click', function (e) {
@@ -70,21 +87,25 @@ player.prototype.init = function () {
         switch (id) {
             case 'playTrack':
                 _this.audio.play();
+                _this.toggleRotate();
                 _this.changeStatus();
                 break;
             case 'pauseTrack':
                 _this.audio.pause();
+                _this.toggleRotate();
                 _this.changeStatus();
                 break;
             case 'nextTrack':
                 _this.next();
                 _this.audio.play();
-                _this.changeStatus();
+        _this.toggleRotate();
+        _this.changeStatus();
                 break;
             case 'prevTrack':
                 _this.prev();
                 _this.audio.play();
-                _this.changeStatus();
+        _this.toggleRotate();
+        _this.changeStatus();
                 break;
             case 'loop':
                 _this.toggleLoop();

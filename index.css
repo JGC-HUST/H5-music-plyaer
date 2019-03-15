@@ -69,6 +69,7 @@ body {
     margin-top: -87.5px;
     margin-left: -87.5px;
     border-radius: 50%;
+    transform: rotate(0);
 }
 .page-process {
     height: 130px;
