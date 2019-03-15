@@ -48,6 +48,7 @@ body {
     line-height: 22px;
     font-size: 14px;
     color: #ffffff;
+    overflow: hidden;
 }
 .page-header .song-title .author {
     height: 15px;
