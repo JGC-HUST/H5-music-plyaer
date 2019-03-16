@@ -97,15 +97,17 @@ player.prototype.init = function () {
                 break;
             case 'nextTrack':
                 _this.next();
+                clearInterval(_this.interval);
                 _this.audio.play();
-        _this.toggleRotate();
-        _this.changeStatus();
+                _this.toggleRotate();
+                _this.changeStatus();
                 break;
             case 'prevTrack':
                 _this.prev();
+                clearInterval(_this.interval);
                 _this.audio.play();
-        _this.toggleRotate();
-        _this.changeStatus();
+                _this.toggleRotate();
+                _this.changeStatus();
                 break;
             case 'loop':
                 _this.toggleLoop();
